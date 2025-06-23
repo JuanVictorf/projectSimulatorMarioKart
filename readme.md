@@ -1,103 +1,81 @@
-<h1>Desafio de projeto do Felipão: Mario Kart.JS</h1>
+<h1>🏎️ Mario Kart.JS - Corrida entre Mario e Luigi</h1> <table> <tr> <td> <img src="./docs/header.gif" alt="Mario Kart" width="200"> </td> <td> <b>Objetivo:</b> <p>Este projeto é uma simulação de corrida inspirada em Mario Kart, desenvolvida com JavaScript puro (Node.js). O desafio foi criar uma engine de corrida entre dois personagens, aplicando conceitos de lógica de programação, randomização e controle de fluxo.</p> </td> </tr> </table>
+🎮 Como funciona a corrida?
+Nesta versão da corrida, temos dois personagens fixos: Mario e Luigi.
 
-  <table>
-        <tr>
-            <td>
-                <img src="./docs/header.gif" alt="Mario Kart" width="200">
-            </td>
-            <td>
-                <b>Objetivo:</b>
-                <p>Mario Kart é uma série de jogos de corrida desenvolvida e publicada pela Nintendo. Nosso desafio será criar uma lógica de um jogo de vídeo game para simular corridas de Mario Kart, levando em consideração as regras e mecânicas abaixo.</p>
-            </td>
-        </tr>
-    </table>
+Mario:
+Velocidade: 4 | Manobrabilidade: 3 | Poder: 3
 
-<h2>Players</h2>
-      <table style="border-collapse: collapse; width: 800px; margin: 0 auto;">
-        <tr>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Mario</p>
-                <img src="./docs/mario.gif" alt="Mario Kart" width="60" height="60">
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Velocidade: 4</p>
-                <p>Manobrabilidade: 3</p>
-                <p>Poder: 3</p>
-            </td>
-             <td style="border: 1px solid black; text-align: center;">
-                <p>Peach</p>
-                <img src="./docs/peach.gif" alt="Mario Kart" width="60" height="60">
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Velocidade: 3</p>
-                <p>Manobrabilidade: 4</p>
-                <p>Poder: 2</p>
-            </td>
-              <td style="border: 1px solid black; text-align: center;">
-                <p>Yoshi</p>
-                <img src="./docs/yoshi.gif" alt="Mario Kart" width="60" height="60">
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Velocidade: 2</p>
-                <p>Manobrabilidade: 4</p>
-                <p>Poder: 3</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Bowser</p>
-                <img src="./docs/bowser.gif" alt="Mario Kart" width="60" height="60">
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Velocidade: 5</p>
-                <p>Manobrabilidade: 2</p>
-                <p>Poder: 5</p>
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Luigi</p>
-                <img src="./docs/luigi.gif" alt="Mario Kart" width="60" height="60">
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Velocidade: 3</p>
-                <p>Manobrabilidade: 4</p>
-                <p>Poder: 4</p>
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Donkey Kong</p>
-                <img src="./docs/dk.gif" alt="Mario Kart" width="60" height="60">
-            </td>
-            <td style="border: 1px solid black; text-align: center;">
-                <p>Velocidade: 2</p>
-                <p>Manobrabilidade: 2</p>
-                <p>Poder: 5</p>
-            </td>
-        </tr>
-    </table>
+Luigi:
+Velocidade: 3 | Manobrabilidade: 4 | Poder: 4
 
-<p></p>
+A corrida acontece ao longo de 5 rodadas, e a cada rodada um tipo de trecho da pista é sorteado.
 
-<h3>🕹️ Regras & mecânicas:</h3>
+🛣️ Tipos de blocos da pista:
+Bloco	Regras
+RETA	Cada jogador rola um dado de 6 lados e soma o resultado com sua VELOCIDADE. Quem tiver o maior valor, ganha 1 ponto.
+CURVA	Cada jogador rola um dado e soma com sua MANOBRABILIDADE. O vencedor da rodada marca 1 ponto.
+CONFRONTO	Ambos jogam o dado e somam com o PODER. Quem vencer, faz o oponente perder 1 ponto (mas os pontos nunca ficam negativos). Em caso de empate, ninguém perde ponto.
 
-<b>Jogadores:</b>
+📜 Regras gerais:
+A corrida sempre terá 5 rodadas.
 
-<input type="checkbox" id="jogadores-item" />
-<label for="jogadores-item">O Computador deve receber dois personagens para disputar a corrida em um objeto cada</label>
+Nenhum jogador pode ter pontuação negativa.
 
-<b>Pistas:</b>
+Ao final, o jogador com mais pontos é declarado o vencedor.
 
-<ul>
-  <li><input type="checkbox" id="pistas-1-item" /> <label for="pistas-1-item">Os personagens irão correr em uma pista aleatória de 5 rodadas</label></li>
-  <li><input type="checkbox" id="pistas-2-item" /> <label for="pistas-2-item">A cada rodada, será sorteado um bloco da pista que pode ser uma reta, curva ou confronto</label>
-    <ul>
-      <li><input type="checkbox" id="pistas-2-1-item" /> <label for="pistas-2-1-item">Caso o bloco da pista seja uma RETA, o jogador deve jogar um dado de 6 lados e somar o atributo VELOCIDADE, quem vencer ganha um ponto</label></li>
-      <li><input type="checkbox" id="pistas-2-2-item" /> <label for="pistas-2-2-item">Caso o bloco da pista seja uma CURVA, o jogador deve jogar um dado de 6 lados e somar o atributo MANOBRABILIDADE, quem vencer ganha um ponto</label></li>
-      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Caso o bloco da pista seja um CONFRONTO, o jogador deve jogar um dado de 6 lados e somar o atributo PODER, quem perder, perde um ponto</label></li>
-      <li><input type="checkbox" id="pistas-2-3-item" /> <label for="pistas-2-3-item">Nenhum jogador pode ter pontuação negativa (valores abaixo de 0)</label></li>
-    </ul>
-  </li>
-</ul>
+Empates podem acontecer.
 
-<b>Condição de vitória:</b>
+▶️ Como executar o projeto:
+Pré-requisitos:
+Ter o Node.js instalado na sua máquina.
 
-<input type="checkbox" id="vitoria-item" />
-<label for="vitoria-item">Ao final, vence quem acumulou mais pontos</label>
+Execução:
+Abra o terminal na pasta do projeto e execute:
+
+bash
+Copiar
+Editar
+node index.js
+(Assumindo que o nome do arquivo seja index.js - ajuste o comando se estiver usando outro nome.)
+
+👾 Exemplo de saída no console:
+yaml
+Copiar
+Editar
+🏁🚨 Corrida entre Mario e LUIGI começando...
+
+🏁 Rodada 1
+Bloco: CURVA
+Mario 🎲 rolou um dado de manobrabilidade 5 + 3 = 8
+LUIGI 🎲 rolou um dado de manobrabilidade 2 + 4 = 6
+Mario marcou um ponto!
+----------------------------------------------
+
+...
+
+Resultado final:
+Mario: 3 ponto(s)
+LUIGI: 2 ponto(s)
+
+Mario venceu a corrida! Parabéns! 🏆
+✅ Itens do Desafio propostos e implementados:
+ Dois personagens como objetos
+
+ Corrida com 5 rodadas
+
+ Sorteio de blocos: reta, curva ou confronto
+
+ Regras específicas para cada bloco
+
+ Controle de pontos sem valor negativo
+
+ Definição de vencedor ao final
+
+🛠️ Tecnologias utilizadas:
+JavaScript (Node.js)
+
+Console.log para exibir o fluxo da corrida no terminal
+
+👨‍💻 Autor:
+Projeto desenvolvido por Juan como parte do desafio de projeto proposto por Felipão.
+
